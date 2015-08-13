@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A blank canvas</title>
+    <style>
+        body{ background-color: LightSkyBlue ; }
+        canvas{ background-color: white; }
+    </style>
+    <script id="vShader" type="x-shader/x-vertex">
+        attribute vec3 aVertexPosition;
+        attribute vec3 aVertexColor;
+
+        varying highp vec4 vColor; //var per passare info tra vs e fs
+        void main(void){
+            gl_Position = vec4(aVertexPosition, 1.0);
+            vColor = vec4(aVertexColor, 1.0);
+        }
+    </script>
+    <script id="fShader" type="x-shader/x-fragment">
+        varying highp vec4 vColor; //var per passare info tra vs e fs
+        void main(void){
+            //gl_FragColor = vec4(1.0,1.0,1.0,1.0); //set white color
+            gl_FragColor = vColor; //set color
+        }
+    </script>
+    <script type="text/javascript" src="js/fgt11/webgl.js"></script>
+</head>
+<body>
+    <canvas id="my-canvas" width="400" height="300">
+        Your browser does not support the HTML5 canvas element.
+    </canvas>
+</body>
+</html>
